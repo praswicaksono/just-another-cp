@@ -1,0 +1,64 @@
+{% extends '@layout/layout.html.twig' %}
+
+{% block title %}{{ view.title }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Login</h4>
+                </div>
+                <div class="content">
+                    <form method="POST" action="{{ path('login') }}">
+                        <div class="row">
+                            <div class="col-lg-3">
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group {% if flash.hasError('email') %} has-error {% endif %}">
+                                            <label>{{ view.form.get('email').label }}</label>
+                                            <input
+                                                    name="{{ view.form.get('email').name }}"
+                                                    type="{{ view.form.get('email').attributes.type }}"
+                                                    class="form-control border-input"
+                                                    placeholder="{{ view.form.get('email').label }}",
+                                                    value="{{ old.email }}"
+                                            >
+                                            {% if flash.hasError('email') %}
+                                                <span class="help-block text-danger">{{ flash.getError('email') }}</span>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>{{ view.form.get('password').label }}</label>
+                                            <input name="{{ view.form.get('password').name }}" type="{{ view.form.get('password').attributes.type }}" class="form-control border-input" placeholder="{{ view.form.get('password').label }}" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="hidden" name="__csrf" value="{{ __csrf }}">
+                                        <div class="text-center">
+                                            <button type="{{ view.form.get('submit').attributes.type }}" class="btn btn-info btn-fill btn-wd">{{ view.form.get('submit').value }}</button>
+                                            <a style="display: block" href="#">Forgot Password</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
